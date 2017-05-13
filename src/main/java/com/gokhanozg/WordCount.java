@@ -1,3 +1,5 @@
+package com.gokhanozg;
+
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -64,7 +66,7 @@ public class WordCount {
         long correctus = 0;
         int run = 0;
         boolean pmStopActive = true;
-        int runLimit = 2000;
+        int runLimit = 100;
 
         for (Image testImage : testImagesList) {
             JavaRDD<CloseImage> closeImages = trainImages.map(trainImage -> {
@@ -103,8 +105,8 @@ public class WordCount {
         BigDecimal hund = BigDecimal.valueOf(100);
         BigDecimal correct = BigDecimal.valueOf(correctus);
         System.out.println("Accuracy:" + correct.multiply(hund).divide(total, 3, BigDecimal.ROUND_HALF_UP) + "%");
-//        JavaPairRDD<String, Integer> counts = testImages.mapToPair((Image image) -> {
-//            JavaRDD<CloseImage> closeImages = trainImages.map(trainImage -> {
+//        JavaPairRDD<String, Integer> counts = testImages.mapToPair((com.gokhanozg.Image image) -> {
+//            JavaRDD<com.gokhanozg.CloseImage> closeImages = trainImages.map(trainImage -> {
 //                BigDecimal error = BigDecimal.ZERO;
 //                String label = trainImage.label;
 //                for (int i = 0; i < 28; i++) {
@@ -113,12 +115,12 @@ public class WordCount {
 //                        error = error.add(BigDecimal.valueOf(differ * differ)); // Square of error
 //                    }
 //                }
-//                CloseImage ci = new CloseImage();
+//                com.gokhanozg.CloseImage ci = new com.gokhanozg.CloseImage();
 //                ci.setError(error);
 //                ci.setLabel(label);
 //                return ci;
 //            });
-//            CloseImage closestImage = closeImages.reduce((c1, c2) -> {
+//            com.gokhanozg.CloseImage closestImage = closeImages.reduce((c1, c2) -> {
 //                if (c1.getError().compareTo(c2.getError()) == -1) {
 //                    return c1;
 //                } else {
